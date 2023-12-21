@@ -8,49 +8,6 @@ import toolbox
 
 ETA = 300
 
-# def get_data(eta,axis,num,d):
-#     data = toolbox.load_simdata('zbias{}_{}_logical{}.json'.format(eta,num,axis))
-#     # load data for code distance d and d+2
-#     x, y1, y2 = [], [], []
-#     for run in data:
-#         if run['n_k_d'][2] == d:
-#             x.append(run['error_probability'])
-#             y1.append(run['logical{}_failure_rate'.format(axis)])
-#         elif run['n_k_d'][2] == d+2:
-#             y2.append(run['logical{}_failure_rate'.format(axis)])
-#     return np.array(x),np.array(y1),np.array(y2)
-
-# def get_crosspoint(eta,axis,num,d):
-#     """
-#     get the cross point probability p of two different code distances.
-#     Note: d is integer; axis = 'x','y','z'
-#     """
-#     x, y1, y2 = get_data(eta,axis,num,d)
-#     k1,b1 = np.polyfit(x,y1,1)
-#     k2,b2 = np.polyfit(x,y2,1)
-#     return (b2-b1)/(k1-k2)
-
-# # write crosspoints into a txt file
-# with open('zbias{}.txt'.format(ETA),"w", encoding='utf-8') as f:
-#     f.writelines('code_distance, crosspoint_x, crosspoint_y, crosspoint_z')
-#     f.write('\n')
-#     for d in range(15,21,2):
-#         f.writelines(['{},{},{},{}'.format(d,get_crosspoint(ETA,'x',1,d),get_crosspoint(ETA,'y',1,d),get_crosspoint(ETA,'z',1,d))])
-#         f.write('\n')
-#     for d in range(35,41,2):
-#         f.writelines(['{},{},{},{}'.format(d,get_crosspoint(ETA,'x',2,d),get_crosspoint(ETA,'y',2,d),get_crosspoint(ETA,'z',2,d))])
-#         f.write('\n')
-#     for d in range(55,61,2):
-#         f.writelines(['{},{},{},{}'.format(d,get_crosspoint(ETA,'x',3,d),get_crosspoint(ETA,'y',3,d),get_crosspoint(ETA,'z',3,d))])
-#         f.write('\n')
-#     for d in range(75,79,2):
-#         f.writelines(['{},{},{},{}'.format(d,get_crosspoint(ETA,'x',4,d),get_crosspoint(ETA,'y',4,d),get_crosspoint(ETA,'z',4,d))])
-#         f.write('\n')
-#     for d in range(95,99,2):
-#         f.writelines(['{},{},{},{}'.format(d,get_crosspoint(ETA,'x',5,d),get_crosspoint(ETA,'y',5,d),get_crosspoint(ETA,'z',5,d))])
-#         f.write('\n')
-#     f.close()
-
 def get_threshold(eta,num):
     data_total = toolbox.load_simdata('zbias{}_{}_total.json'.format(eta,num))
     data_x = toolbox.load_simdata('zbias{}_{}_logicalx.json'.format(eta,num))
